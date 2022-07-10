@@ -1,20 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type, ViewChild } from '@angular/core';
+import { ClawesomeComponent } from './clawesome.component';
+import { DynamicComponent } from './dynamic.component';
+import { DynamicDirective } from './dynamic.directive';
+import { PawesomeComponent } from './pawesome.component';
 
 @Component({
   selector: 'app-department',
   template: `
-    <p>
-      department works!
-    </p>
+    <h3 class="mat-headline">Relax, you got this</h3>
+    <ng-template appDynamic></ng-template>
   `,
-  styles: [
+  styles: [`
+    h3 { text-align: center; } `
   ]
 })
 export class DepartmentComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(DynamicDirective, { static: true }) private dynamicHost!: DynamicDirective;
+  private interval: number | undefined;
+  private currentIndex = 1;
 
-  ngOnInit(): void {
+  private messages: { type: Type<DynamicComponent> }[] = [
+    { type: ClawesomeComponent },
+    { type: PawesomeComponent },
+    // { type: SmileyComponent }
+  ];
+
+  public ngOnInit(): void {
+    this.loadComponent();
+    this.rotateMessages();
+  }
+
+  public ngOnDestroy(): void {
+    clearInterval(this.interval);
+  }
+
+  private loadComponent(): void {
+    if (this.messages.length === 0) return;
+
+    this.currentIndex = (this.currentIndex + 1) % this.messages.length;
+    const message = this.messages[this.currentIndex];
+    console.log('message', message)
+
+    const viewContainerRef = this.dynamicHost.viewContainerRef;
+    viewContainerRef.clear();
+
+    const componentRef = viewContainerRef.createComponent<DynamicComponent>(message?.type);
+  }
+
+  private rotateMessages(): void {
+    this.interval = window.setInterval(() => {
+      this.loadComponent();
+    }, 5000);
   }
 
 }
