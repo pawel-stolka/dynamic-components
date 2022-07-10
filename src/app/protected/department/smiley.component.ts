@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicComponent } from './dynamic.component';
 
 @Component({
-  selector: 'app-clawesome',
+  selector: 'app-smiley',
   template: `
     <p>
-      it's clawesome!
+      and the last - smiley works!
     </p>
   `,
   styles: [
   ]
 })
-export class ClawesomeComponent  implements DynamicComponent {
+export class SmileyComponent implements OnInit {
 
   constructor() { }
 

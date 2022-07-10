@@ -45,13 +45,13 @@ export class DepartmentComponent implements OnInit {
     const viewContainerRef = this.dynamicHost.viewContainerRef;
     viewContainerRef.clear();
 
-    const componentRef = viewContainerRef.createComponent<DynamicComponent>(message?.type);
+    const componentRef = viewContainerRef.createComponent<DynamicComponent>(message.type);
   }
 
   private rotateMessages(): void {
     this.interval = window.setInterval(() => {
       this.loadComponent();
-    }, 5000);
+    }, 3000);
   }
 
 }

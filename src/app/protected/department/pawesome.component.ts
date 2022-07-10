@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-pawesome',
   template: `
     <p>
-      pawesome works!
+      now - pawesome works!
     </p>
   `,
   styles: [

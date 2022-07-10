@@ -9,6 +9,7 @@ import { ClawesomeComponent } from './department/clawesome.component';
 import { PawesomeComponent } from './department/pawesome.component';
 import { MatCardModule } from "@angular/material/card";
 import { MatListModule } from "@angular/material/list";
+import { SmileyComponent } from './department/smiley.component';
 
 
 
@@ -18,7 +19,8 @@ import { MatListModule } from "@angular/material/list";
     DepartmentComponent,
     DynamicDirective,
     ClawesomeComponent,
-    PawesomeComponent
+    PawesomeComponent,
+    SmileyComponent
   ],
   imports: [
     CommonModule,
